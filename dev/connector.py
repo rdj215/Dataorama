@@ -8,8 +8,11 @@ import psycopg2
 load_dotenv('.env')
 
 
+# url_birth = "https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/Vital_Natality_Cty/FeatureServer/0/query?where=1%3D1"
+
 # endpoint for pollling data in philadelphia
 url_polling = "https://phl.carto.com/api/v2/sql?q=SELECT * FROM polling_places"
+# url_turnout2018 = "https://phl.carto.com/api/v2/sql?q=SELECT * FROM voter_turnout_primary_election_2018"
 res = requests.get(url_polling) # make get request
 res_json = json.dumps(res.json(), indent=4) # wrap json object in srtings
 res_json = json.loads(res_json) # convert json object to dict
@@ -26,7 +29,9 @@ print(res_json.keys())
 print(res_json['time'])
 print(res_json['fields'].keys())
 print(res_json['rows'][0])
-print(f' total rows: {total}  type: {type(total)}')
+print(f" total rows: {total}  type: {type(total)}")
+print(f"DB: {os.environ.get('DBNAME')}")
+print(f"USER: {os.environ.get('USER')}")
 
 
 # create connection object
