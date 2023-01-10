@@ -13,11 +13,16 @@ if __name__ == '__main__' :
     pcs = []
 
 
-    file_names = ['C:\\Users\\ryanj\\Dataorama\\dev\\file1.txt', 'C:\\Users\\ryanj\Dataorama\\dev\\file2.txt', 'C:\\Users\\ryanj\\Dataorama\\dev\\file3.txt']
-   
-    # def file_handler(file, directory):
-    #     """Function that takes file names as argumments and returns the file path"""
-    #     file
+    # file_names = ['C:\\Users\\ryanj\\Dataorama\\dev\\file1.txt', 'C:\\Users\\ryanj\Dataorama\\dev\\file2.txt', 'C:\\Users\\ryanj\\Dataorama\\dev\\file3.txt']
+    file_names = []
+    def file_handler():
+        """Function that takes file names as argumments and returns the file path"""
+        file_name = input("Enter file name: ")
+        directory_name = input("Enter the diretory the path is located in: ")
+        # path =os.path.join("C:\\Users\\",file_name)
+        path = os.path.relpath(file_name)
+        file_names.append(path)
+        return
 
     def checksum(files, num_threads, q): 
         """Performs checksum on files using seperate proccesses"""
@@ -37,8 +42,8 @@ if __name__ == '__main__' :
             p.join()
 
         
-
-    checksum(file_names, 2, q )
+    file_handler()
+    checksum(file_names, 1, q )
     print(q.qsize())
     print(check_file.__doc__)
 
